@@ -1,0 +1,76 @@
+<!--
+Programa: Circulos
+Nome: Davi Yuu Santos Toyota-Nº:04 - Turma: 2 ANO B
+Nome: Felipe Amoroso Lambaz-Nº:08.
+Nome: Pedro Campos Pesotti- Nº:26.
+Nome: Rafael Alvez Lazari - Nº:30.
+Nome: Rodrigo Ferro Fraga - Nº:31.
+DESCRIÇÃO: Dois circulos se cruzam no centro
+-->
+
+
+
+<DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+      <title>Movimentação</title>
+      <meta charset="UTF-8">
+      <style>
+          canvas {
+              border:1px solid #d3d3d3;
+              background-color: #A0A0A0;
+              }
+              
+      </style>
+      <script type="text/javascript">
+           var blueGamePiece, yellowGamePiece;
+          
+          function startGame() {
+              yellowGamePiece =  new component(40, "yellow", 10, 10);
+              blueGamePiece = new component(40, "blue", 730, 720);
+              myGameArea.start();
+              
+          }
+          var myGameArea = {
+              canvas : document.createElement("canvas"),
+              start : function() {
+                  this.canvas.width = 800;
+                  this.canvas.height = 790;
+                  this.context = this.canvas.getContext("2d");
+                  document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                  this.interval = setInterval(updateGameArea, 20);
+                  },
+              clear : function() {
+                  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                  }
+                }
+          function component(radius, color, x, y) {
+              this.radius = radius;
+              this.color = color;
+              this.x = x;
+              this.y = y;
+              this.update = function(){
+                  ctx = myGameArea.context;
+                  ctx.beginPath();
+                  ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                  ctx.fillStyle = this.color;
+                  ctx.fill();
+                  ctx.closePath();
+                  }
+              }
+              function updateGameArea() {
+                  myGameArea.clear();
+                  yellowGamePiece.update();
+                  yellowGamePiece.x += 1;
+                  yellowGamePiece.y += 1;
+                  blueGamePiece.update();
+                  blueGamePiece.x -=1;
+                  blueGamePiece.y -=1;
+                  }
+          </script>
+        </head>
+        <body onload="startGame();">
+            </body>
+        </html>
+
+        
